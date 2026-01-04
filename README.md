@@ -12,3 +12,7 @@
 ## ECMA Script
 
 ## DOM Manipulation (Concept)
+- Document Object Model (DOM)
+- Update content
+- Styling
+- Add HTML elements
