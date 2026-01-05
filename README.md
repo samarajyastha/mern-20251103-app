@@ -28,3 +28,5 @@
 ## JSX 
 
 - JS+HTML code
+
+## Props (Component properties)
