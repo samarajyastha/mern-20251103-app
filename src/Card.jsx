@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 function Card({ title, subtitle }) {
+  const [isLiked, setIsLiked] = useState(false);
+
   return (
     <div
       style={{
@@ -11,7 +15,8 @@ function Card({ title, subtitle }) {
       }}
     >
       <h1>{title}</h1>
-      <h2>{subtitle}</h2>
+      <h2>{isLiked ? "👍" : "👎"}</h2>
+      <button onClick={() => setIsLiked(true)}>Like</button>
     </div>
   );
 }
