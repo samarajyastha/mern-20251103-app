@@ -47,3 +47,15 @@
 1. useState
 2. useEffect
 3. useRef (HTML element catcher)
+
+## Routing
+
+- Route is a url endpoint
+- /, /about, /contact, /products
+- Used to define which page/component to show/load on url match
+- 
+
+====================
+- React routing
+- Redux state management
+- Custom hooks

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Card({ title, subtitle }) {
+function Card({ title }) {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
