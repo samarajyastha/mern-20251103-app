@@ -54,6 +54,7 @@
 - /, /about, /contact, /products
 - Used to define which page/component to show/load on url match
 - React routing
+- Props drilling (don't use)
 
 ====================
 - Redux state management

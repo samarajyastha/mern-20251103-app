@@ -1,7 +1,11 @@
+import ComponentA from "../components/contact/ComponentA";
+
 const Contact = () => {
   return (
-    <h1>Contact</h1>
-  )
-}
+    <section className="py-20 text-center">
+      <ComponentA />
+    </section>
+  );
+};
 
-export default Contact
+export default Contact;
