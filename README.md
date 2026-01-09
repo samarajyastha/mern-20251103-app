@@ -53,9 +53,8 @@
 - Route is a url endpoint
 - /, /about, /contact, /products
 - Used to define which page/component to show/load on url match
-- 
+- React routing
 
 ====================
-- React routing
 - Redux state management
 - Custom hooks
