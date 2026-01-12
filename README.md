@@ -64,7 +64,53 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 2. Client component: Exactly react component, hooks, events, user interaction
 
+## NextJS Routing
+
+- File/folder based routing
+- All routes must be inside the `/app` directory
+- Every route must have `page.js` or `page.tsx` file
+- `page.js`/`page.tsx` file must have a default export component
+
+1. Simple route
+- Create a folder inside `/app` directory
+- Create a `page.js` file inside this folder.
+- Add a default export component
+
+2. Nested route
+- `/courses/frontend/react`
+- `/courses/frontend/vue`
+- `/courses/backend/laravel`
+- `/courses/backend/node-express`
+
+3. Dynamic route
+- Create a folder enclosed by [] -> `/products/[id]`
+- Route: `/products/:id`
+
+4. Nested dynamic route
+- Route: `/products/:id/reviews/:reviewId`
+- Folder structure: `/products/[id]/reviews/[reviewId]`
+
+5. Catch all segments
+- `/news/general/political/congress`
+- `/news/general/education/universities/tu/ioe/bct`
+- `/news/general/education/board/see`
+- `/news/weather`
+- `/news/sports/football/men`
+- `/news/sports/tennis/women`
+- `/news/sports/cricket/t20/men`
+- Folder structure: `/news/[...slug]`
+
+6. Route groups
+- Route: `/login`, `/register` 
+- But it should be inside `/auth` folder
+- Name the `/auth` folder as `(auth)`
+
+7. Private folders
+- `/_<folder_name>` -> `/_components`
+
+8. Not found route/page
+- `app/not-found.js`
+
 ==============================================
-- Routing
 - NextJS file system
 - Rendering
