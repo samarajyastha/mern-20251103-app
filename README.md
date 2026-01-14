@@ -72,25 +72,30 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - `page.js`/`page.tsx` file must have a default export component
 
 1. Simple route
+
 - Create a folder inside `/app` directory
 - Create a `page.js` file inside this folder.
 - Add a default export component
 
 2. Nested route
+
 - `/courses/frontend/react`
 - `/courses/frontend/vue`
 - `/courses/backend/laravel`
 - `/courses/backend/node-express`
 
 3. Dynamic route
+
 - Create a folder enclosed by [] -> `/products/[id]`
 - Route: `/products/:id`
 
 4. Nested dynamic route
+
 - Route: `/products/:id/reviews/:reviewId`
 - Folder structure: `/products/[id]/reviews/[reviewId]`
 
 5. Catch all segments
+
 - `/news/general/political/congress`
 - `/news/general/education/universities/tu/ioe/bct`
 - `/news/general/education/board/see`
@@ -101,16 +106,35 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Folder structure: `/news/[...slug]`
 
 6. Route groups
-- Route: `/login`, `/register` 
+
+- Route: `/login`, `/register`
 - But it should be inside `/auth` folder
 - Name the `/auth` folder as `(auth)`
 
 7. Private folders
+
 - `/_<folder_name>` -> `/_components`
 
 8. Not found route/page
+
 - `app/not-found.js`
 
+## NextJS files
+
+**Note: The file names listed below should be exactly the same.**
+
+- page.js (Routing)
+- not-found.js (Not found page)
+- layout.js / layout.tsx
+
+### Nested layout
+
+- Use layout inside a route
+
 ==============================================
-- NextJS file system
+
+- loading.js
+- error.js
+- File hierarchy
+
 - Rendering
