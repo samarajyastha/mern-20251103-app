@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 
 import { HOME_ROUTE } from "@/constants/routes";
-import navlinks from "@/constants/navlinks";
+import Navlink from "./Navlink";
 
 const Header = () => {
   return (
@@ -22,17 +22,7 @@ const Header = () => {
             </Link>
           </h1>
           {/* Navbar */}
-          <nav className="hidden md:flex gap-5">
-            {navlinks.map((navlink) => (
-              <Link
-                key={navlink.route}
-                href={navlink.route}
-                className="text-gray-700 font-medium hover:text-primary dark:text-gray-300 dark:hover:text-primary"
-              >
-                {navlink.label}
-              </Link>
-            ))}
-          </nav>
+          <Navlink />
           <div className="flex items-center">
             <button className="text-gray-700 p-1 dark:text-gray-300 hover:text-primary">
               <FaMoon />

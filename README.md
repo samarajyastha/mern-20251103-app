@@ -126,14 +126,27 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - page.js (Routing)
 - not-found.js (Not found page)
 - layout.js / layout.tsx
+- loading.js
 
 ### Nested layout
 
 - Use layout inside a route
 
+## params and searchParams
+
+- params: dynamic route parameter (id), page.js & layout.js
+- searchParams: query parameter (?q=test), available only on page.js
+
+## Metadata
+
+- Metadata api is used to define metadata of page
+- Can be used in page.js/layout.js
+- Useful for SEO
+- Static: metadata
+- Dynamic: generateMetadata
+
 ==============================================
 
-- loading.js
 - error.js
 - File hierarchy
 

@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Contact | Techno",
+};
+
 const ContactPage = () => {
   return <div className="text-7xl">Hello from contact page</div>;
 };

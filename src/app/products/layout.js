@@ -4,7 +4,9 @@ const ProductsLayout = ({ children }) => {
   return (
     <div>
       <ProductsBanner />
-      {children}
+      <section>
+        <div className="container mx-auto px-6">{children}</div>
+      </section>
     </div>
   );
 };
