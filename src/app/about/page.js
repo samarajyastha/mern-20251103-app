@@ -2,8 +2,20 @@ export const metadata = {
   title: "About | Techno",
 };
 
-const AboutPage = () => {
-  return <div className="text-7xl">AboutPage</div>;
+const AboutPage = async ({ searchParams }) => {
+  const query = await searchParams;
+
+  const id = query?.id;
+
+  if (!Number.isInteger(parseInt(id))) {
+    throw new Error("Id is not a number.");
+  }
+
+  if (parseInt(id) > 100) {
+    throw new Error("Id exceeded the max limit 100.");
+  }
+
+  return <div className="text-7xl">Id: {parseInt(id)}</div>;
 };
 
 export default AboutPage;

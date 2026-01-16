@@ -14,7 +14,7 @@ const ProductCard = ({ _id, name, price, brand, category, imageUrls }) => {
           height={400}
           width={600}
         />
-        <span className="absolute top-3 right-3 bg-primary text-white text-xs font-medium px-2 py-1 rounded-xl">
+        <span className="absolute top-3 right-3 bg-teal-700 text-white text-xs font-medium px-2 py-1 rounded-xl">
           {brand}
         </span>
       </Link>

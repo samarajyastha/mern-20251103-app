@@ -127,6 +127,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - not-found.js (Not found page)
 - layout.js / layout.tsx
 - loading.js
+- error.js
 
 ### Nested layout
 
@@ -147,7 +148,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ==============================================
 
-- error.js
 - File hierarchy
-
 - Rendering
+
+=============================================
+- Form (React hook form)
+- API integration (using axios)
+- Global state management (Redux)

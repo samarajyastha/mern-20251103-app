@@ -5,7 +5,7 @@ import banner from "@/assets/images/product-banner.jpg";
 
 const ProductsBanner = () => {
   return (
-    <section className="py-10">
+    <section className="pb-8">
       <div className="container mx-auto px-6">
         <div className="relative overflow-hidden text-white px-10  bg-linear-to-r from-primary/80 to-secondary/80 w-full h-52 rounded-2xl shadow-sm">
           <Image

@@ -14,7 +14,7 @@ const RootLayout = ({ children }) => {
     <html>
       <body>
         <Header />
-        {children}
+        <main className="min-h-screen">{children}</main>
         <Footer />
       </body>
     </html>
