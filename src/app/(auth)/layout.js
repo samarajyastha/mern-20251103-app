@@ -1,9 +1,19 @@
+import Image from "next/image";
+
+import bg from "@/assets/images/auth-bg.jpg";
+
 const AuthLayout = ({ children }) => {
   return (
-    <div>
-      <h1 className="w-full bg-blue-500 h-64">Auth Layout</h1>
-      {children}
-    </div>
+    <section className="relative py-16">
+      <Image
+        src={bg}
+        alt=""
+        height={800}
+        width={1200}
+        className="min-h-screen h-full w-full absolute top-0 left-0 object-cover -z-1"
+      />
+      <div className="container mx-auto px-6">{children}</div>
+    </section>
   );
 };
 

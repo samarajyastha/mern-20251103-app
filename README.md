@@ -146,12 +146,44 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Static: metadata
 - Dynamic: generateMetadata
 
+## Auth
+
+Credentials -> Login -> token (API) -> Store locally in browser (local storage)
+If token -> User is logged in -> Use this token in API request
+Else -> User is not logged in
+
+### Storage
+
+1. Local storage
+  - Size: 5MB
+  - Available only on browser
+  - Data is stored forever
+
+2. Session storage
+  - Size: 5MB
+  - Available only on browser
+  - Data is cleared on tab close
+
+3. Cookie storage
+  - Size: 4KB
+  - Available on browser & server
+  - Data is stored permanently, with expiry date
+
+## HTTP Requests
+
+- Hypertext transfer protocol
+
+- GET: Fetch data (Read)
+- POST: Create data (Create)
+- PUT: Update data (Update)
+- DELETE: Delete data (Delete)
+- PATCH: Partial update
+
 ==============================================
 
 - File hierarchy
 - Rendering
 
 =============================================
-- Form (React hook form)
-- API integration (using axios)
+
 - Global state management (Redux)

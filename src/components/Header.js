@@ -1,26 +1,14 @@
-import Link from "next/link";
+import { FaBars, FaMoon, FaShoppingCart, FaUser } from "react-icons/fa";
 
-import {
-  FaBars,
-  FaLaptop,
-  FaMoon,
-  FaShoppingCart,
-  FaUser,
-} from "react-icons/fa";
-
-import { HOME_ROUTE } from "@/constants/routes";
 import Navlink from "./Navlink";
+import Logo from "./Logo";
 
 const Header = () => {
   return (
     <header className="w-full bg-white dark:bg-gray-900 sticky top-0 shadow z-50">
       <div className="container mx-auto py-3 px-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-semibold text-primary">
-            <Link href={HOME_ROUTE} className="flex items-center gap-1">
-              <FaLaptop /> Techno
-            </Link>
-          </h1>
+          <Logo />
           {/* Navbar */}
           <Navlink />
           <div className="flex items-center">
