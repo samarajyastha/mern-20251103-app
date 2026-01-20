@@ -7,7 +7,7 @@ const AboutPage = async ({ searchParams }) => {
 
   const id = query?.id;
 
-  if (!Number.isInteger(parseInt(id))) {
+  if (id && !Number.isInteger(parseInt(id))) {
     throw new Error("Id is not a number.");
   }
 
@@ -15,7 +15,7 @@ const AboutPage = async ({ searchParams }) => {
     throw new Error("Id exceeded the max limit 100.");
   }
 
-  return <div className="text-7xl">Id: {parseInt(id)}</div>;
+  return <div className="text-7xl">About page</div>;
 };
 
 export default AboutPage;

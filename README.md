@@ -179,6 +179,16 @@ Else -> User is not logged in
 - DELETE: Delete data (Delete)
 - PATCH: Partial update
 
+## Global state management (Redux)
+
+The 3 core concepts of redux:
+
+1. Store: Stores state data, one and only one store, to maintain single source of truth
+2. Action: Function that is dispatched on user interaction/event trigger/api call to change state
+3. Reducer: Binds store and action, stores the state data, responsible for UI transition
+
+### Thunk action
+
 ==============================================
 
 - File hierarchy
@@ -186,4 +196,14 @@ Else -> User is not logged in
 
 =============================================
 
-- Global state management (Redux)
+- Product management
+- Cart
+- Order
+- Payment => Khalti, Stripe
+- Order management
+- Profile
+- Forgot password/Reset password
+- Product details
+- User management
+- Dashboard
+- Other pages (Home, contact, about)
