@@ -1,3 +1,4 @@
+import ProductsFilter from "@/components/products/Filter";
 import { FaImage, FaShoppingCart } from "react-icons/fa";
 
 export const LoadingCard = () => {
@@ -27,16 +28,19 @@ export const LoadingCard = () => {
 
 const ProductsLoading = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-      <LoadingCard />
-      <LoadingCard />
-      <LoadingCard />
-      <LoadingCard />
-      <LoadingCard />
-      <LoadingCard />
-      <LoadingCard />
-      <LoadingCard />
-    </div>
+    <section className="grid grid-cols-1 md:grid-cols-[1fr_2fr] xl:grid-cols-[1fr_4fr] gap-8">
+      <ProductsFilter />
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+        <LoadingCard />
+        <LoadingCard />
+        <LoadingCard />
+        <LoadingCard />
+        <LoadingCard />
+        <LoadingCard />
+        <LoadingCard />
+        <LoadingCard />
+      </div>
+    </section>
   );
 };
 
