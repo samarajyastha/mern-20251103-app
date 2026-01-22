@@ -10,8 +10,20 @@ export const getProducts = async (searchParams) => {
   const name = (await searchParams)?.name ?? "";
 
   const response = await axios.get(
-    `${config.apiUrl}/api/products?sort=${sort}&min=${min}&max=${max}&category=${category}&brand=${brands}&name=${name}`
+    `${config.apiUrl}/api/products?sort=${sort}&min=${min}&max=${max}&category=${category}&brand=${brands}&name=${name}`,
   );
+
+  return response.data;
+};
+
+export const addProduct = async (data) => {
+  const authToken = localStorage.getItem("authToken");
+
+  const response = await axios.post(`${config.apiUrl}/api/products`, data, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  });
 
   return response.data;
 };
