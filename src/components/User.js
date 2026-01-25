@@ -1,7 +1,7 @@
 "use client";
 
 import { FaUser } from "react-icons/fa";
-import { LOGIN_ROUTE } from "@/constants/routes";
+import { DASHBOARD_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from "@/constants/routes";
 import { logout } from "@/redux/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -51,13 +51,13 @@ const User = () => {
             </div>
             <div className="flex flex-col py-2">
               <Link
-                href={""}
+                href={DASHBOARD_ROUTE}
                 className="py-1 px-4 text-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-200"
               >
                 Dashboard
               </Link>
               <Link
-                href={""}
+                href={PROFILE_ROUTE}
                 className="py-1 px-4 text-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-200"
               >
                 Profile

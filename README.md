@@ -197,7 +197,6 @@ The 3 core concepts of redux:
 
 =============================================
 
-- Product management
 - Cart
 - Order
 - Payment => Khalti, Stripe
@@ -208,3 +207,4 @@ The 3 core concepts of redux:
 - User management
 - Dashboard
 - Other pages (Home, contact, about)
+- Pagination
