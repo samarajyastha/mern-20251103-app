@@ -197,7 +197,6 @@ The 3 core concepts of redux:
 
 =============================================
 
-- Cart
 - Order
 - Payment => Khalti, Stripe
 - Order management

@@ -1,26 +1,59 @@
 "use client";
 
 import { FaMinus, FaPlus, FaRegHeart, FaXmark } from "react-icons/fa6";
-import { PRODUCTS_ROUTE } from "@/constants/routes";
+import { ORDERS_ROUTE, PRODUCTS_ROUTE } from "@/constants/routes";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight, FaImage } from "react-icons/fa";
 import {
+  clearCart,
   decreaseQuantity,
   increaseQuantity,
   removeFromCart,
 } from "@/redux/cart/cartSlice";
+import { createOrder } from "@/api/orders";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const CartPage = () => {
   const { products, totalPrice } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   function remove(product) {
     if (confirm("Are you sure?")) {
       dispatch(removeFromCart(product));
     }
+  }
+
+  function checkout() {
+    const orderItems = products.map((product) => ({
+      product: product.id,
+      quantity: product.quantity,
+    }));
+
+    const shippingAddress = user.address;
+
+    createOrder({
+      orderItems,
+      shippingAddress,
+      totalPrice: Math.ceil(totalPrice * 1.13) + 200,
+    })
+      .then(() => {
+        router.push(ORDERS_ROUTE);
+
+        toast.success("Order created successfully.", {
+          onClose: () => {
+            dispatch(clearCart());
+          },
+        });
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data);
+      });
   }
 
   return (
@@ -453,20 +486,18 @@ const CartPage = () => {
                     </dd>
                   </dl>
                 </div>
-                <a
-                  href="#"
+                <button
+                  onClick={checkout}
                   className="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-primary/30 dark:hover:bg-blue-700 dark:focus:ring-primary"
                 >
                   Proceed to Checkout
-                </a>
+                </button>
                 <div className="flex items-center justify-center gap-2">
                   <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    {" "}
-                    or{" "}
+                    or
                   </span>
                   <Link
                     href={PRODUCTS_ROUTE}
-                    title
                     className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500"
                   >
                     Continue Shopping
