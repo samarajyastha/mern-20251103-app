@@ -1,13 +1,13 @@
+import { cancelOrder } from "@/api/orders";
 import { FaXmark } from "react-icons/fa6";
 import { format } from "date-fns";
+import { ORDER_STATUS_PENDING } from "@/constants/order";
+import { toast } from "react-toastify";
 import Image from "next/image";
 import OrderStatus from "./Status";
-import { cancelOrder } from "@/api/orders";
-import { toast } from "react-toastify";
-import {
-  ORDER_STATUS_CANCELLED,
-  ORDER_STATUS_PENDING,
-} from "@/constants/order";
+import PayViaKhalti from "./PayViaKhalti";
+import CashOnDelivery from "./CashOnDelivery";
+import PayViaStripe from "./PayViaStripe";
 
 const OrderCard = ({ order }) => {
   const isProductAvailable = order.orderItems.some((item) => item.product);
@@ -106,7 +106,7 @@ const OrderCard = ({ order }) => {
       </div>
       <div className="w-full border-t border-gray-200 dark:border-gray-700 flex flex-col lg:flex-row items-center justify-between">
         <div className="flex flex-col sm:flex-row items-center max-lg:border-b overflow-hidden border-gray-200 dark:border-gray-700">
-          {order.status !== ORDER_STATUS_CANCELLED ? (
+          {order.status === ORDER_STATUS_PENDING ? (
             <button
               onClick={cancel}
               className="flex outline-0 py-6 sm:pr-6 px-6 sm:border-r border-gray-200 dark:border-gray-700 whitespace-nowrap gap-2 items-center justify-center font-semibold group text-lg text-red-500 cursor-pointer dark:hover:bg-red-950 hover:bg-red-100 transition-all duration-500 hover:text-red-600"
@@ -117,15 +117,9 @@ const OrderCard = ({ order }) => {
           ) : null}
           {order.status === ORDER_STATUS_PENDING ? (
             <div className="pl-6 py-3 max-lg:text-center flex items-center gap-3">
-              <button className="bg-purple-900 hover:bg-violet-900 text-white rounded-md px-4 py-2 cursor-pointer">
-                Pay Via Khalti
-              </button>
-              <button className="bg-blue-700 hover:bg-blue-800 text-white rounded-md px-4 py-2 cursor-pointer">
-                Pay Via Stripe
-              </button>
-              <button className="bg-green-700  hover:bg-green-800 text-white rounded-md px-4 py-2 cursor-pointer">
-                Cash on Delivery
-              </button>
+              <PayViaKhalti id={order._id} />
+              <PayViaStripe id={order._id} />
+              <CashOnDelivery id={order._id} />
             </div>
           ) : null}
         </div>

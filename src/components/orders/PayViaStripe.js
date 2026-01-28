@@ -1,0 +1,79 @@
+import {
+  CardElement,
+  Elements,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import { confirmPayment, payViaStripe } from "@/api/orders";
+import { loadStripe } from "@stripe/stripe-js";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import config from "@/config/config";
+import Modal from "../Modal";
+
+const CheckoutForm = ({ id }) => {
+  const [show, setShow] = useState(false);
+
+  const stripe = useStripe();
+  const elements = useElements();
+
+  async function initPaymentViaStripe() {
+    try {
+      const data = await payViaStripe(id);
+
+      const clientSecret = data.client_secret;
+
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      });
+
+      if (result && result.paymentIntent?.status == "succeeded") {
+        await confirmPayment(id, "Completed");
+
+        setShow(false);
+
+        return toast.success("Payment successful.");
+      }
+
+      toast.error("Payment failed.");
+    } catch (error) {
+      console.log(error);
+      toast.error("Payment failed.");
+    }
+  }
+
+  return (
+    <>
+      <button
+        onClick={() => setShow(true)}
+        className="bg-blue-700 hover:bg-blue-800 text-white rounded-md px-4 py-2 cursor-pointer"
+      >
+        Pay Via Stripe
+      </button>
+      <Modal
+        show={show}
+        setShow={setShow}
+        title={"Card Payment"}
+        onConfirm={initPaymentViaStripe}
+      >
+        <div className="py-10">
+          <CardElement />
+        </div>
+      </Modal>
+    </>
+  );
+};
+
+const PayViaStripe = ({ id }) => {
+  const stripePromise = loadStripe(config.stripeKey);
+
+  return (
+    <Elements stripe={stripePromise}>
+      <CheckoutForm id={id} />
+    </Elements>
+  );
+};
+
+export default PayViaStripe;
