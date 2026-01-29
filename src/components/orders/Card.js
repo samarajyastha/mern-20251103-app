@@ -1,16 +1,21 @@
 import { cancelOrder } from "@/api/orders";
 import { FaXmark } from "react-icons/fa6";
 import { format } from "date-fns";
-import { ORDER_STATUS_PENDING } from "@/constants/order";
+import {
+  ORDER_STATUS_CANCELLED,
+  ORDER_STATUS_PENDING,
+} from "@/constants/order";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import OrderStatus from "./Status";
 import PayViaKhalti from "./PayViaKhalti";
 import CashOnDelivery from "./CashOnDelivery";
 import PayViaStripe from "./PayViaStripe";
+import { useRouter } from "next/navigation";
 
 const OrderCard = ({ order }) => {
   const isProductAvailable = order.orderItems.some((item) => item.product);
+  const router = useRouter();
 
   if (!isProductAvailable) return;
 
@@ -19,6 +24,8 @@ const OrderCard = ({ order }) => {
       cancelOrder(order._id)
         .then(() => {
           toast.success("Order cancelled.");
+
+          router.push(`?status=${ORDER_STATUS_CANCELLED}`);
         })
         .catch((error) => {
           console.log(error);

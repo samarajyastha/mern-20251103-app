@@ -19,11 +19,11 @@ const Modal = ({ title, onConfirm, show, setShow, children }) => {
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
               {title}
             </h3>
-            {children}
+            <div>{children}</div>
             <button
               onClick={onConfirm}
               type="button"
-              className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+              className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-900 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
             >
               Yes, I&apos;m sure
             </button>

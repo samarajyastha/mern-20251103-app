@@ -10,12 +10,16 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import config from "@/config/config";
 import Modal from "../Modal";
+import { useRouter } from "next/navigation";
+import { ORDER_STATUS_CONFIRMED } from "@/constants/order";
 
 const CheckoutForm = ({ id }) => {
   const [show, setShow] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
+
+  const router = useRouter();
 
   async function initPaymentViaStripe() {
     try {
@@ -33,6 +37,8 @@ const CheckoutForm = ({ id }) => {
         await confirmPayment(id, "Completed");
 
         setShow(false);
+
+        router.push(`?status=${ORDER_STATUS_CONFIRMED}`);
 
         return toast.success("Payment successful.");
       }
@@ -58,7 +64,7 @@ const CheckoutForm = ({ id }) => {
         title={"Card Payment"}
         onConfirm={initPaymentViaStripe}
       >
-        <div className="py-10">
+        <div className="my-10 border border-gray-300 rounded-lg px-3 py-2">
           <CardElement />
         </div>
       </Modal>

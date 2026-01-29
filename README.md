@@ -197,9 +197,6 @@ The 3 core concepts of redux:
 
 =============================================
 
-- Payment => Khalti, Stripe
-- Order by status
-- Order management
 - Profile
 - Forgot password/Reset password
 - Product details

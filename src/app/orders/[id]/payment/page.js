@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Spinner from "@/components/Spinner";
+import { ORDER_STATUS_CONFIRMED } from "@/constants/order";
 
 const OrderPayment = () => {
   const searchParams = useSearchParams();
@@ -19,12 +20,11 @@ const OrderPayment = () => {
     confirmPayment(params.id, status)
       .then(() => {
         toast.success("Order payment success.");
+        router.replace(`${ORDERS_ROUTE}?status=${ORDER_STATUS_CONFIRMED}`);
       })
       .catch((error) => {
         console.log(error);
         toast.error("Order payment failed.");
-      })
-      .finally(() => {
         router.replace(ORDERS_ROUTE);
       });
 

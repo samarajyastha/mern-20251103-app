@@ -15,6 +15,7 @@ import {
 import { createOrder } from "@/api/orders";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { ORDER_STATUS_PENDING } from "@/constants/order";
 
 const CartPage = () => {
   const { products, totalPrice } = useSelector((state) => state.cart);
@@ -43,7 +44,7 @@ const CartPage = () => {
       totalPrice: Math.ceil(totalPrice * 1.13) + 200,
     })
       .then(() => {
-        router.push(ORDERS_ROUTE);
+        router.push(`${ORDERS_ROUTE}?status=${ORDER_STATUS_PENDING}`);
 
         toast.success("Order created successfully.", {
           onClose: () => {
