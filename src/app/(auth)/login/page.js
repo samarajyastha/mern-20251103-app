@@ -1,7 +1,7 @@
 "use client";
 
 import { loginUser } from "@/redux/auth/authActions";
-import { REGISTER_ROUTE } from "@/constants/routes";
+import { FORGOT_PASSWORD_ROUTE, REGISTER_ROUTE } from "@/constants/routes";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -49,6 +49,7 @@ const LoginPage = () => {
             <label className="font-medium">Password</label>
             <PasswordInput {...register("password")} />
           </div>
+          <Link className="p-2 inline-block text-sm text-primary hover:underline" href={FORGOT_PASSWORD_ROUTE}>Forgot password</Link>
           <button
             type="submit"
             disabled={loading}

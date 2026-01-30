@@ -11,6 +11,8 @@ import { logout } from "@/redux/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Link from "next/link";
+import { ORDER_STATUS_PENDING } from "@/constants/order";
+import Image from "next/image";
 
 const User = () => {
   const { user } = useSelector((state) => state.auth);
@@ -33,9 +35,21 @@ const User = () => {
     <div className="relative">
       <button
         onClick={() => setShow(true)}
-        className="border-2 rounded-full h-9 min-w-9 flex items-center justify-center text-gray-700 px-2 py-1 dark:text-gray-300 hover:text-primary cursor-pointer"
+        className="border-2 rounded-full h-9 min-w-9 flex items-center justify-center text-gray-700dark:text-gray-300 hover:text-primary cursor-pointer"
       >
-        <FaUser />
+        {user?.profileImageUrl ? (
+          <Image
+            src={user.profileImageUrl}
+            height={64}
+            width={64}
+            alt={user.name}
+            className="h-8 w-8 rounded-full"
+          />
+        ) : (
+          <div className="px-2 py-1">
+            <FaUser />
+          </div>
+        )}
       </button>
 
       {show && (
@@ -62,7 +76,7 @@ const User = () => {
                 Dashboard
               </Link>
               <Link
-                href={ORDERS_ROUTE}
+                href={`${ORDERS_ROUTE}?status=${ORDER_STATUS_PENDING}`}
                 className="py-1 px-4 text-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-200"
               >
                 Orders

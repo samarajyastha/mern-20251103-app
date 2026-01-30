@@ -197,12 +197,10 @@ The 3 core concepts of redux:
 
 =============================================
 
-- Profile
-- Forgot password/Reset password
 - Product details
+- Pagination
 - User management
 - Dashboard
 - Other pages (Home, contact, about)
-- Pagination
-- Merchant
 - Deployment
+- Merchant
