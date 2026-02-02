@@ -197,9 +197,6 @@ The 3 core concepts of redux:
 
 =============================================
 
-- Product details
-- Pagination
-- User management
 - Dashboard
 - Other pages (Home, contact, about)
 - Deployment
