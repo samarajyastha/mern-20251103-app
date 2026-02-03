@@ -15,19 +15,23 @@ const AuthLayout = ({ children }) => {
 
   useEffect(() => {
     if (user) router.push(HOME_ROUTE);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (
     <section className="relative py-16">
-      <Image
-        src={bg}
-        alt=""
-        height={800}
-        width={1200}
-        className="min-h-screen h-full w-full absolute top-0 left-0 object-cover -z-1"
-      />
-      <div className="container mx-auto px-6">{children}</div>
+      <div className="min-h-screen h-full w-full absolute top-0 left-0 z-1 ">
+        <Image
+          src={bg}
+          alt=""
+          height={800}
+          width={1200}
+          className="min-h-screen h-full w-full object-cover"
+        />
+        <div className="h-full w-full absolute top-0 left-0 z-10 bg-white/5 dark:bg-gray-900/40"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-20">{children}</div>
     </section>
   );
 };

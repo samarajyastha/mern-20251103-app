@@ -19,10 +19,10 @@ const navlinks = [
     label: "Products",
     route: PRODUCTS_ROUTE,
   },
-  {
-    label: "News",
-    route: NEWS_ROUTE,
-  },
+  // {
+  //   label: "News",
+  //   route: NEWS_ROUTE,
+  // },
   {
     label: "Contact",
     route: CONTACT_ROUTE,

@@ -1,5 +1,11 @@
+import OrderStats from "@/components/dashboard/OrderStats";
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return (
+    <section>
+      <OrderStats />
+    </section>
+  );
 };
 
 export default DashboardPage;
