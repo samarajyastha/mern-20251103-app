@@ -1,11 +1,12 @@
-import { FaCog, FaPencilAlt } from "react-icons/fa";
+import { FaCog } from "react-icons/fa";
 import { format } from "date-fns";
-import Link from "next/link";
 import OrderStatus from "./Status";
 import OrderAction from "./Action";
 import Spinner from "@/components/Spinner";
+import Link from "next/link";
+import { PRODUCTS_ROUTE } from "@/constants/routes";
 
-const OrdersTable = ({ loading, orders }) => {
+const OrdersTable = ({ loading, orders, disableAction }) => {
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -49,7 +50,7 @@ const OrdersTable = ({ loading, orders }) => {
           <tbody>
             {orders.map(
               (order) =>
-                order.orderItems.some((item) => item.product) && (
+                order.orderItems.length > 0 && (
                   <tr
                     key={order._id}
                     className="border-b border-gray-300 dark:border-gray-700"
@@ -61,17 +62,21 @@ const OrdersTable = ({ loading, orders }) => {
                       #{order.orderNumber}
                     </th>
                     <td className="px-4 py-3">
-                      {order.orderItems.map((item, index) => (
-                        <p key={index}>
-                          <Link
-                            href={`/products/${item.product._id}`}
-                            className="text-primary mr-2 hover:underline"
-                          >
-                            {item.product?.name}
-                          </Link>
-                          (x{item.quantity})
-                        </p>
-                      ))}
+                      <ol>
+                        {order.orderItems.map((item, index) => (
+                          <li key={index} className="mb-2">
+                            <Link
+                              href={`${PRODUCTS_ROUTE}/${item._id}`}
+                              className="text-primary hover:underline"
+                            >
+                             {item.name}
+                            </Link>
+                            <p className="text-xs">
+                              {item.brand}-{item.category}
+                            </p>
+                          </li>
+                        ))}
+                      </ol>
                     </td>
                     <td className="px-4 py-3">Rs. {order.totalPrice}</td>
                     <td className="px-4 py-3">
@@ -105,7 +110,11 @@ const OrdersTable = ({ loading, orders }) => {
                       <OrderStatus status={order.status} />
                     </td>
                     <td className="px-4 py-3">
-                      <OrderAction id={order._id} status={order.status} />
+                      {disableAction ? (
+                        <FaCog />
+                      ) : (
+                        <OrderAction id={order._id} status={order.status} />
+                      )}
                     </td>
                   </tr>
                 ),

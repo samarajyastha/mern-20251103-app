@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllOrders } from "@/api/orders";
+import { getAllOrders, getOrdersByMerchant } from "@/api/orders";
 import { useEffect, useState } from "react";
 import OrdersTable from "@/components/admin/orders/Table";
 import {
@@ -10,20 +10,35 @@ import {
   ORDER_STATUS_PENDING,
   ORDER_STATUS_SHIPPED,
 } from "@/constants/order";
+import { useSelector } from "react-redux";
+import { ROLE_ADMIN } from "@/constants/roles";
 
 const OrderManagementPage = () => {
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState(false);
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  const { user } = useSelector((state) => state.auth);
+
+  async function fetchOrders() {
     setLoading(true);
 
-    getAllOrders(selectedStatus)
-      .then((data) => setOrders(data))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+    try {
+      const data = user.roles.includes(ROLE_ADMIN)
+        ? await getAllOrders(selectedStatus)
+        : await getOrdersByMerchant();
+
+      setOrders(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedStatus]);
 
   return (
@@ -62,7 +77,11 @@ const OrderManagementPage = () => {
               </div>
             </div>
           </div>
-          <OrdersTable loading={loading} orders={orders} />
+          <OrdersTable
+            loading={loading}
+            orders={orders}
+            disableAction={!user.roles.includes(ROLE_ADMIN)}
+          />
         </div>
       </section>
     </>

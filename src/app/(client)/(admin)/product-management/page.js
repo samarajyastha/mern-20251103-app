@@ -1,23 +1,41 @@
+"use client";
+
 import { FaUpload } from "react-icons/fa";
 import Link from "next/link";
 
 import { getProducts } from "@/api/products";
 import Pagination from "@/components/admin/products/Pagination";
 import ProductsTable from "@/components/admin/products/Table";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { ROLE_ADMIN, ROLE_MERCHANT } from "@/constants/roles";
 
-const ProductManagementPage = async ({ searchParams }) => {
+const ProductManagementPage = () => {
+  const [products, setProducts] = useState([]);
+
   const PAGE_LIMIT = 10;
 
-  const query = await searchParams;
-  const currentPage = query?.page ?? 1;
+  const searchParams = useSearchParams();
 
-  const products = await getProducts({
-    ...query,
-    limit: PAGE_LIMIT,
-    offset: PAGE_LIMIT * (currentPage - 1),
-  });
+  const currentPage = searchParams.get("page") ?? 1;
+  const sort = searchParams.get("sort");
 
-  console.log(products);
+  const { user } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+    const filter = {
+      sort,
+      limit: PAGE_LIMIT,
+      offset: PAGE_LIMIT * (currentPage - 1),
+    };
+
+    if (user.roles.includes(ROLE_MERCHANT)) {
+      filter.createdBy = user._id;
+    }
+
+    getProducts(filter).then((data) => setProducts(data));
+  }, [currentPage, sort]);
 
   return (
     <>

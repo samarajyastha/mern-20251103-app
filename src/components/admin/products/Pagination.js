@@ -2,9 +2,10 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { getTotalCount } from "@/api/products";
 import { PRODUCT_MANAGEMENT_ROUTE } from "@/constants/routes";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const Pagination = async ({ currentPage, pageLimit = 10 }) => {
-  const totalCount = await getTotalCount();
+const Pagination = ({ currentPage, pageLimit = 10 }) => {
+  const [totalCount, setTotalCount] = useState(0);
 
   const totalPages = Math.ceil(totalCount / pageLimit);
 
@@ -13,6 +14,10 @@ const Pagination = async ({ currentPage, pageLimit = 10 }) => {
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i.toString());
   }
+
+  useEffect(() => {
+    getTotalCount().then((data) => setTotalCount(data));
+  }, []);
 
   return (
     <nav className="flex flex-col items-start justify-between p-4 space-y-3 md:flex-row md:items-center md:space-y-0">

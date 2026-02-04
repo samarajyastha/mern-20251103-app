@@ -20,6 +20,14 @@ export const getOrdersByUser = async (status) => {
   return response.data;
 };
 
+export const getOrdersByMerchant = async () => {
+  let url = "api/orders/merchant";
+
+  const response = await api.get(url);
+
+  return response.data;
+};
+
 export const createOrder = async (data) => {
   const response = await api.post(`/api/orders`, data);
 

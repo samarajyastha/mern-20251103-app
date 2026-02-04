@@ -24,7 +24,7 @@ const Sidebar = () => {
         <ul className="space-y-2 font-medium">
           {sidebarLinks.map((item) => {
             if (!user.roles.some((role) => item.roles.includes(role))) {
-              return <></>;
+              return <div key={item.route}></div>;
             }
 
             const isActive = pathname.startsWith(item.route);
