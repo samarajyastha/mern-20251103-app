@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 const ProductsPage = async ({ searchParams }) => {
-  const products = await getProducts(searchParams);
+  const products = await getProducts(await searchParams);
 
   const brands = await getProductBrands();
   const categories = await getProductCategories();
